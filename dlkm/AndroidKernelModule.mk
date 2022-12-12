@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+ifneq ($(call is-board-platform-in-list,taro parrot neo anorak), true)
+
+>>>>>>> d832d5a4ace465f1234a6a861e1ce558d9cc720d
 # Get the number of CPU cores. This is the number of parallel jobs to be passed to make command.
 NCORES := $(shell grep -c ^processor /proc/cpuinfo)
 ifeq ($(NCORES),)
@@ -220,3 +225,8 @@ endif
 KBUILD_OPTIONS :=
 LOCAL_ADDITIONAL_DEPENDENCIES :=
 KBUILD_OPTIONS_GKI :=
+<<<<<<< HEAD
+=======
+endif
+endif
+>>>>>>> d832d5a4ace465f1234a6a861e1ce558d9cc720d

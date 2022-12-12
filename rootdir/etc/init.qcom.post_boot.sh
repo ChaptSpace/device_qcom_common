@@ -1,6 +1,6 @@
 #! /vendor/bin/sh
 
-# Copyright (c) 2012-2013, 2016-2020, The Linux Foundation. All rights reserved.
+# Copyright (c) 2012-2013, 2016-2021, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -354,7 +354,6 @@ if [ $feature_id == 6 ]; then
 	echo 940800000 > /sys/class/devfreq/soc\:qcom,cpu6-cpu-l3-lat/min_freq
 	echo 1017600000 > /sys/class/devfreq/soc\:qcom,cpu6-cpu-l3-lat/max_freq
 	echo 3 > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
-	echo 1016 > /sys/devices/platform/soc/soc:aop-set-ddr-freq/set_ddr_capped_freq
 	setprop vendor.sku_identified 1
 	setprop vendor.sku_name "SA6145"
 elif [ $feature_id == 5 ]; then
@@ -384,7 +383,6 @@ elif [ $feature_id == 5 ]; then
 	echo 940800000 > /sys/class/devfreq/soc\:qcom,cpu6-cpu-l3-lat/min_freq
 	echo 1363200000 > /sys/class/devfreq/soc\:qcom,cpu6-cpu-l3-lat/max_freq
 	echo 2 > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
-	echo 1333 > /sys/devices/platform/soc/soc:aop-set-ddr-freq/set_ddr_capped_freq
 	setprop vendor.sku_identified 1
 	setprop vendor.sku_name "SA6150"
 elif [ $feature_id == 4 ] || [ $feature_id == 3 ]; then
@@ -414,7 +412,6 @@ elif [ $feature_id == 4 ] || [ $feature_id == 3 ]; then
 	echo 940800000 > /sys/class/devfreq/soc\:qcom,cpu6-cpu-l3-lat/min_freq
 	echo 1363200000 > /sys/class/devfreq/soc\:qcom,cpu6-cpu-l3-lat/max_freq
 	echo 0 > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
-	echo 1555 > /sys/devices/platform/soc/soc:aop-set-ddr-freq/set_ddr_capped_freq
 	setprop vendor.sku_identified 1
 	setprop vendor.sku_name "SA6155"
 else
@@ -444,7 +441,6 @@ else
 	echo 940800000 > /sys/class/devfreq/soc\:qcom,cpu6-cpu-l3-lat/min_freq
 	echo 1363200000 > /sys/class/devfreq/soc\:qcom,cpu6-cpu-l3-lat/max_freq
 	echo 0 > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
-	echo 1555 > /sys/devices/platform/soc/soc:aop-set-ddr-freq/set_ddr_capped_freq
         setprop vendor.sku_identified 1
 	setprop vendor.sku_name "SA6155"
 fi
@@ -5678,8 +5674,6 @@ case "$target" in
                 #setting max cpu freq to 2.496GHz
                 echo 2496000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
                 #setting max gpu freq to 530 MHz
-                echo 3 > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
-		echo 1804 > /sys/devices/platform/soc/soc:aop-set-ddr-freq/set_ddr_capped_freq
         elif [ $feature_id == 1 ] || [ $feature_id == 2 ]; then
                 echo "feature_id is 1 for external SA8195AB"
                 echo "feature_id is 2 for internal SA8195AB"
@@ -5688,7 +5682,6 @@ case "$target" in
                 echo 2496000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_max_freq
                 #setting max gpu freq to 670 MHz
                 echo 0 > /sys/class/kgsl/kgsl-3d0/max_pwrlevel
-		echo 2092 > /sys/devices/platform/soc/soc:aop-set-ddr-freq/set_ddr_capped_freq
         elif [ $feature_id == 3 ]; then
                 echo "feature_id is 3 for external SA8195AC"
         else
@@ -6123,12 +6116,6 @@ case "$target" in
     "qsd8250_surf" | "qsd8250_ffa" | "qsd8650a_st1x")
         echo 50000 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate
         ;;
-esac
-
-case "$target" in
-    "qsd8650a_st1x")
-        mount -t debugfs none /sys/kernel/debug
-    ;;
 esac
 
 chown -h system /sys/devices/system/cpu/cpufreq/ondemand/sampling_rate

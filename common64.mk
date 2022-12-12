@@ -28,7 +28,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.apm_sim_not_pwdn=1 \
     persist.vendor.radio.sib16_support=1 \
     persist.vendor.radio.custom_ecc=1 \
+<<<<<<< HEAD
     persist.vendor.radio.rat_on=combine \
+=======
+    persist.backup.ntpServer=0.pool.ntp.org \
+    sys.vendor.shutdown.waittime=500 \
+>>>>>>> d832d5a4ace465f1234a6a861e1ce558d9cc720d
     persist.vendor.radio.procedure_bytes=SKIP
 endif
 
